@@ -404,24 +404,34 @@ export function WalletDashboard({
           </TabsContent>
 
           <TabsContent value="send">
-            <div className="space-y-6">
-              <SendTransaction
-                wallet={wallet} 
-                balance={balance}
-                nonce={nonce}
-                onBalanceUpdate={handleBalanceUpdate}
-                onNonceUpdate={handleNonceUpdate}
-                onTransactionSuccess={handleTransactionSuccess}
-              />
-              <MultiSend 
-                wallet={wallet} 
-                balance={balance}
-                nonce={nonce}
-                onBalanceUpdate={handleBalanceUpdate}
-                onNonceUpdate={handleNonceUpdate}
-                onTransactionSuccess={handleTransactionSuccess}
-              />
-            </div>
+            <Tabs defaultValue="single" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="single">Single Send</TabsTrigger>
+                <TabsTrigger value="multi">Multi Send</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="single" className="mt-6">
+                <SendTransaction
+                  wallet={wallet} 
+                  balance={balance}
+                  nonce={nonce}
+                  onBalanceUpdate={handleBalanceUpdate}
+                  onNonceUpdate={handleNonceUpdate}
+                  onTransactionSuccess={handleTransactionSuccess}
+                />
+              </TabsContent>
+              
+              <TabsContent value="multi" className="mt-6">
+                <MultiSend 
+                  wallet={wallet} 
+                  balance={balance}
+                  nonce={nonce}
+                  onBalanceUpdate={handleBalanceUpdate}
+                  onNonceUpdate={handleNonceUpdate}
+                  onTransactionSuccess={handleTransactionSuccess}
+                />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           <TabsContent value="private">
